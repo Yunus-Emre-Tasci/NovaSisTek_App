@@ -1,40 +1,42 @@
 <template>
     <div class="appHeader">
-        <div class="logo" @click="$router.push('/')">Logo</div>
+        <h2>Header</h2>
+        <!-- <div class="logo" @click="$router.push('/')">Logo</div>
         <div class="box">
             <div class="badge" v-if="$store.getters.getBasketsLength!==0">{{ $store.getters.getBasketsLength }}</div>
             <svg @click="onShow" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
             <ShopContext 
             
             @goBasket="show=false" v-if="show" />
-        </div>
+        </div> -->
     </div>
 </template>
 
 
 <script>
-import ShopContext from './ShopContext.vue';
-
+// import ShopContext from './ShopContext.vue';
+// 
 export default {
     name: "AppHeader",
-    methods: {
-        onShow() {
-            if(this.$store.getters.getBasketsLength!==0){
-            }
-            this.show = !this.show;
+    // methods: {
+    //     onShow() {
+    //         if(this.$store.getters.getBasketsLength!==0){
+    //         }
+    //         this.show = !this.show;
 
-        }
-    },
-    data() {
-        return {
-            show: false
-        };
-    },
-    components: { ShopContext }
+    //     }
+    // },
+    // data() {
+    //     return {
+    //         show: false
+    //     };
+    // },
+    // components: { ShopContext }
 }
 </script>
-<style scoped>
-.appHeader{
+<style scoped lang="scss">
+
+/* .appHeader{
     background: #fff;
     border-bottom: 1px solid #eff1f3;
     padding-left: 64px;
@@ -73,5 +75,5 @@ export default {
     font-weight: 600;
     font-size: 20px;
     letter-spacing: 12px;
-}
+} */
 </style>
