@@ -2,7 +2,22 @@
   <div>
     Detay Sayfası
     <div>{{ itemId }}</div>
-    <!-- <div>{{ characters.fullName }}</div> -->
+    <div>{{ details.title }}</div>
+    <div>
+      <div v-if="details.description"><div>{{ details.description }}</div></div>
+      <div v-else>MARVEL</div>
+    </div>
+    <div>
+      <div v-if="creators.length>0"><div v-for="creator in creators" :key="creator.id">{{ creator }}</div></div>
+      <div v-else>Marvel</div>
+    </div>
+    <div>
+      <div v-if="characters.length>0"><div v-for="character in characters" :key="character.id">{{ character }}</div></div>
+      <div v-else>Marvel</div>
+    </div>
+    <div>{{ url }}</div>
+
+    
   </div>
 </template>
 
@@ -16,7 +31,11 @@ export default {
   setup() {
     const itemId = ref(null);
     const router=useRouter()
-    const characters = ref([]);
+    const details = ref([]);
+    const url=ref(null);
+    const creators=ref([]);
+    const characters=ref([]);
+    
 
     const apiKey = process.env.VUE_APP_API_KEY;
     const hash = process.env.VUE_APP_HASH;
@@ -24,13 +43,13 @@ export default {
 
     onMounted(() => {
       itemId.value = router.currentRoute.value.query.itemId;
-      fetchCharacters(itemId.value)
+      fetchDetail(itemId.value)
     });
 
-    const fetchCharacters = async (id) => {
-      try {url
-        const response = await axios.get(
-          `${baseUrl}/${id}/characters`,
+    const fetchDetail = async (id) => {
+      try {
+        const {data} = await axios.get(
+          `${baseUrl}/${id}`,
           {
             params: {
               ts: 1,
@@ -39,8 +58,11 @@ export default {
             },
           }
         );
-        console.log(response.data.data.results);
-        characters.value = response.data.data.results;
+        console.log(data.data.results[0]);
+        details.value = data.data.results[0];
+        url.value=data.data.results[0].urls[0].url
+        creators.value=data.data.results[0].creators.items.map((item)=>item.name)
+        characters.value=data.data.results[0].characters.items.map((item)=>item.name)
       } catch (error) {
         console.error(error);
       }
@@ -48,6 +70,9 @@ export default {
 
     return {
       itemId,
+      details,
+      url,
+      creators,
       characters,
     };
   },
