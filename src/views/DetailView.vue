@@ -2,7 +2,7 @@
   <div>
     Detay Sayfası
     <div>{{ itemId }}</div>
-    <div>{{ characters.fullName }}</div>
+    <!-- <div>{{ characters.fullName }}</div> -->
   </div>
 </template>
 
@@ -24,13 +24,13 @@ export default {
 
     onMounted(() => {
       itemId.value = router.currentRoute.value.query.itemId;
-      fetchCharacters()
+      fetchCharacters(itemId.value)
     });
 
-    const fetchCharacters = async () => {
-      try {
+    const fetchCharacters = async (id) => {
+      try {url
         const response = await axios.get(
-          `${baseUrl}${itemId.value}/creators`,
+          `${baseUrl}/${id}/characters`,
           {
             params: {
               ts: 1,

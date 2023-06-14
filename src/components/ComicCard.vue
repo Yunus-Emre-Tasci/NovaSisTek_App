@@ -1,11 +1,17 @@
 <template>
   <div  @click="goToDetail">
   <div class="title">{{item.title}}</div>
-  <div class="description">{{ item.description }}</div>
+  <!-- <div class="description">{{ item.description }}</div> -->
   <div class="creators">
-      <div v-for="creator in item.creators" :key="creator.id">
-        {{ creator.name }}
-      </div>
+      <div v-if="item.creators && item.creators.items.length > 0">
+  <div v-for="creator in item.creators.items" :key="creator.id">
+    {{ creator.name }}
+  </div>
+</div>
+<div v-else>
+  Marvel
+</div>
+
     </div>
   </div>
 </template>

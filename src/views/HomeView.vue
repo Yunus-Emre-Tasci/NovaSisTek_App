@@ -39,43 +39,36 @@ export default {
               hash: hash,
             }
           })
-      console.log(data);
+      // console.log(data);
       comics.value=data.data.results
-      fetchCreators();
+      // fetchCreators();
       } catch (error) {
         console.log(error);
       }
     };
 
-    const fetchCreators = async () => {
-      const comicIds = comics.value.map(item => item.id); // Tüm comic ID'lerini al
-
-      // Her comic ID için ayrı bir istek göndererek creator verilerini getir
-      for (const comicId of comicIds) {
-        try {
-          const response = await axios.get(
-            `https://gateway.marvel.com/v1/public/comics/${comicId}/creators`,
-            {
-              params: {
-                ts: 1,
-                apikey: process.env.VUE_APP_MARVEL_API_KEY,
-                hash: process.env.VUE_APP_MARVEL_API_HASH
-              }
-            }
-          );
-
-          const creators = response.data.data.results;
-
-          // Creator verilerini, ilgili comic ID'ye sahip comic verisinin içine ekle
-          const comic = comics.value.find(item => item.id === comicId);
-          if (comic) {
-            comic.creators = creators;
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    };
+  //   const fetchCreators = async () => {
+  //     for (let i = 0; i < comics.value.length; i++) {
+  //   const comic = comics.value[i];
+  //   try {
+  //     const response = await axios.get(
+  //       `https://gateway.marvel.com/v1/public/comics/${comic.id}/creators`,
+  //       {
+  //         params: {
+  //           ts: 1,
+  //           apikey: process.env.VUE_APP_MARVEL_API_KEY,
+  //           hash: process.env.VUE_APP_MARVEL_API_HASH
+  //         }
+  //       }
+  //     );
+  //     console.log(response);
+  //     const creators = response.data.data.results;
+  //     comic.creators = creators;
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
+  //   };
 
     onMounted(() => {
       getAllComics();
