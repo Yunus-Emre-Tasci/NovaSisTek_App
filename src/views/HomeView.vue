@@ -24,11 +24,57 @@ export default {
   },
   setup(){
     const comics = ref([]);
+    
+    const baseUrl=process.env.VUE_APP_BASE_URL
+    const hash = process.env.VUE_APP_HASH;
+    const apiKey = process.env.VUE_APP_API_KEY;
 
     const getAllComics = async() => {
-      const {data}=await axios('https://gateway.marvel.com/v1/public/comics?ts=1&limit=20&apikey=52ae5ab647eca4d395566c57ad8e7a93&hash=768e97c70447bfec05829a99930774dd')
+      try {
+        const {data}=await axios.get(`${baseUrl}`,{
+            params: {
+              ts: 1,
+              limit: 20,
+              apikey: apiKey,
+              hash: hash,
+            }
+          })
       console.log(data);
       comics.value=data.data.results
+      fetchCreators();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const fetchCreators = async () => {
+      const comicIds = comics.value.map(item => item.id); // Tüm comic ID'lerini al
+
+      // Her comic ID için ayrı bir istek göndererek creator verilerini getir
+      for (const comicId of comicIds) {
+        try {
+          const response = await axios.get(
+            `https://gateway.marvel.com/v1/public/comics/${comicId}/creators`,
+            {
+              params: {
+                ts: 1,
+                apikey: process.env.VUE_APP_MARVEL_API_KEY,
+                hash: process.env.VUE_APP_MARVEL_API_HASH
+              }
+            }
+          );
+
+          const creators = response.data.data.results;
+
+          // Creator verilerini, ilgili comic ID'ye sahip comic verisinin içine ekle
+          const comic = comics.value.find(item => item.id === comicId);
+          if (comic) {
+            comic.creators = creators;
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
     };
 
     onMounted(() => {
