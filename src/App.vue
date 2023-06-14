@@ -6,17 +6,18 @@
   <router-view/>
 </template> -->
 <template>
-  <!-- <AppHeader /> -->
+  <AppHeader />
   <Container />
 </template>
 
 <script>
-import Container from "./components/Container.vue"
+import Container from "./components/Container.vue";
+import AppHeader from "./components/AppHeader.vue"
 
 export default {
   name: 'App',
   components: {
-    // AppHeader,
+    AppHeader,
     Container
 }
 }
