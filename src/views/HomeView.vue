@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h2>Hello</h2>
-    <div class="grid">
+    <div class="flex">
     <ComicCard
       
       v-for="item in comics"
@@ -80,3 +80,12 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+   .flex{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    border: 1px solid black;
+   }
+</style>

@@ -1,11 +1,13 @@
 <template>
-  <div  @click="goToDetail">
+  <div class="card" @click="goToDetail">
   <div class="title">{{item.title}}</div>
   <!-- <div class="description">{{ item.description }}</div> -->
   <div class="creators">
       <div v-if="item.creators && item.creators.items.length > 0">
+        <div class="creator">
   <div v-for="creator in item.creators.items" :key="creator.id">
-    {{ creator.name }}
+    {{ creator.name }},
+  </div>
   </div>
 </div>
 <div v-else>
@@ -37,6 +39,19 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped lang="scss">
+.card{
+  width: 250px;
+  height: 300px;
+  margin: 10px auto;
+  border: 1px solid red;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 5px;
+}
+   .creator{
+    display: flex;
+    justify-content: center;
+   }
 </style>
