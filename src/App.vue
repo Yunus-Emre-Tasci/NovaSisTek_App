@@ -33,9 +33,6 @@ export default {
       store.commit('toggleDarkMode');
       darkMode.value = !darkMode.value;
     };
-    //  const toggleDarkMode = () => {
-    //   store.dispatch('setDarkMode', !darkMode.value);
-    // };
 
     return {
       darkMode,

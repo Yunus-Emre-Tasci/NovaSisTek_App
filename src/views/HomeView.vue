@@ -83,6 +83,7 @@ export default {
 
 <style scoped lang="scss">
    .flex{
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
     gap: 5px;

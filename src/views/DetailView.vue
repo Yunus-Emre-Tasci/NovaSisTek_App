@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="detail">
     Detay Sayfası
     <div>{{ itemId }}</div>
     <div>{{ details.title }}</div>
@@ -79,6 +79,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
+.detail{
+  height: 100vh;
+}
 </style>
 

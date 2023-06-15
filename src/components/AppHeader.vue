@@ -1,5 +1,5 @@
 <template>
-  <div class="appHeader dark-mode">
+  <div class="appHeader" id="appHeader">
     <div class="logo" @click="goToHome">NovaSisTek</div>
     <div class="box" @click="toggleShopContext">
       <div class="badge" v-if="basketsLength !== 0">{{ basketsLength }}</div>
@@ -79,6 +79,21 @@ export default {
     const store = useStore();
     const show = ref(false);
 
+    // Scroll olayını dinle
+    window.addEventListener("scroll", function() {
+      var appHeader = document.getElementById("appHeader");
+      var scrollPosition = window.scrollY;
+      var threshold = 100; // Eşik değeri, arka planın değişeceği scroll miktarı
+
+      if (scrollPosition > threshold) {
+        // appHeader.style.setProperty('--appHeader-background', '#333');
+        appHeader.style.backgroundColor = "#333";
+      } else {
+        // appHeader.style.setProperty('--appHeader-background', '#fff');
+        appHeader.style.backgroundColor = "#fff"; // Varsayılan arka plan rengi
+      }
+    });
+
     const basketsLength = computed(() => {
       return store.getters.getBasketsLength;
     });
@@ -114,8 +129,8 @@ export default {
   color: #fff;
 }
 .appHeader {
-  background: #fff;
   border-bottom: 1px solid #eff1f3;
+  width: 100%;
   padding-left: 64px;
   padding-right: 64px;
   padding-top: 16px;
@@ -123,6 +138,11 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
+  top: 0;
+  background-color: #fff; /* varsayılan arka plan rengi */
+  /* background-color: var(--appHeader-background); CSS değişkeni kullanarak arka plan rengi */
+  transition: background-color 0.3s ease; /* geçiş efekti */
 
   .badge {
     display: flex;
