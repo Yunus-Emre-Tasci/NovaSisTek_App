@@ -1,9 +1,8 @@
 <template>
   <div class="home">
-    <h2>Hello</h2>
+    <h2>Comics</h2>
     <div class="flex">
     <ComicCard
-      
       v-for="item in comics"
       :item="item"
       :key="item.id"
@@ -58,6 +57,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.home{
+  h2{
+    margin-top:-15px
+  }
+}
    .flex{
     height: 100%;
     display: flex;

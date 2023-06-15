@@ -132,6 +132,7 @@ export default {
   box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.6);
   .topHeader{
     position: fixed;
+    z-index: 10;
     top: 0;
     right: 0;
     left:0;
