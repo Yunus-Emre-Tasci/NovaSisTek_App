@@ -43,6 +43,19 @@
       </nav>
     </div>
     </div>
+    <div class="contentHeader">
+      <div class="title">Marvel</div>
+      <div class="info">
+        <h2>REMEMBERING JOHN ROMITA SR.</h2>
+        <p>We mourn the loss of a legend.</p>
+      </div>
+      <div class="urls">
+        <a href="https://www.marvel.com/articles" target="_blank">News</a>
+        <a href="https://www.marvel.com/comics?&options%5Boffset%5D=0&totalcount=12" target="_blank">Comics</a>
+        <a href="https://www.marvel.com/characters" target="_blank">Characters</a>
+        <a href="https://www.marvel.com/movies" target="_blank">Movies</a>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -173,6 +186,46 @@ export default {
       color:red;
     }
   }
+  }
+
+  .contentHeader{
+    padding-top:170px;
+    padding-left:40px;
+    .title{
+      color:red;
+      font-size:4rem;
+      font-weight: 800;
+      letter-spacing: 5px;
+    }
+    .info{
+      color:black;
+      p{
+        font-weight: 600;
+        font-size:18px;
+      }
+    }
+    .urls{
+      margin-top:15px;
+      cursor: pointer;
+      display: flex;
+      gap:15px;
+      a{
+        text-decoration: none;
+        color: #fff;
+        outline: none;
+        border: none;
+        font-weight: 600;
+        border-radius: 0.2vw;
+        background-color: rgba(51,51, 51, 0.5);
+        padding: 3px 6px;
+        transition: all 0.3s easy;
+
+        &:hover{
+          background-color: white;
+          color:black
+        }
+      }
+    }
   }
 }
 nav {

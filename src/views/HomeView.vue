@@ -41,34 +41,10 @@ export default {
           })
       // console.log(data);
       comics.value=data.data.results
-      // fetchCreators();
       } catch (error) {
         console.log(error);
       }
     };
-
-  //   const fetchCreators = async () => {
-  //     for (let i = 0; i < comics.value.length; i++) {
-  //   const comic = comics.value[i];
-  //   try {
-  //     const response = await axios.get(
-  //       `https://gateway.marvel.com/v1/public/comics/${comic.id}/creators`,
-  //       {
-  //         params: {
-  //           ts: 1,
-  //           apikey: process.env.VUE_APP_MARVEL_API_KEY,
-  //           hash: process.env.VUE_APP_MARVEL_API_HASH
-  //         }
-  //       }
-  //     );
-  //     console.log(response);
-  //     const creators = response.data.data.results;
-  //     comic.creators = creators;
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-  //   };
 
     onMounted(() => {
       getAllComics();
