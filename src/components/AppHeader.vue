@@ -1,6 +1,6 @@
 <template>
   <div class="appHeader" id="appHeader">
-    <div class="logo" @click="goToHome">NovaSisTek</div>
+    <div class="logo" @click="goToHome"><img src="https://media.licdn.com/dms/image/C4D0BAQHHbMKtZ0PVFA/company-logo_200_200/0/1604813119159?e=2147483647&v=beta&t=wEGHNp_cofMgFawUc0C49tZpZU71ljALCot0y3k94xk" alt="Logo"><span class="novasistek">NovaSisTek</span></div>
     <div class="box" @click="toggleShopContext">
       <div class="badge" v-if="basketsLength !== 0">{{ basketsLength }}</div>
       <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
@@ -9,28 +9,18 @@
         <path
           d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
       </svg>
-      <!-- <ShopContext v-show="show" @goBasket="hideShopContext" /> -->
     </div>
     <div class="toggleTheme">
-      <!-- <button type="button"
-      @click="toggleDarkMode"
-      :class="{
-        'dark-mode': darkMode,
-      }">
-
-      </button> -->
-      <nav class="fixed flex justify-end p-2 top-8 right-2">
+      <nav>
   <button
-    type="button"
+    
     title="Toggle dark/light mode"
     @click="toggleDarkMode"
-    class="flex items-center p-3 mr-2 text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-lg toggle-dark-state-example hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
   >
   <span v-if="darkMode">
     <svg
       aria-hidden="true"
       icon="moon"
-      class="w-4 h-4"
       fill="currentColor"
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +32,6 @@
     <svg
       aria-hidden="true"
       icon="sun"
-      class="w-4 h-4"
       fill="currentColor"
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
@@ -55,8 +44,7 @@
     </svg>
     </span>
   </button>
-</nav>
-
+      </nav>
     </div>
   </div>
 </template>
@@ -65,7 +53,6 @@
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-// import ShopContext from './ShopContext.vue';
 
 export default {
   name: 'AppHeader',
@@ -73,7 +60,6 @@ export default {
     darkMode: Boolean,
     toggleDarkMode: Function,
   },
-//   components: { ShopContext },
   setup() {
     const router = useRouter();
     const store = useStore();
@@ -172,9 +158,15 @@ export default {
 
   .logo {
     cursor: pointer;
-    font-weight: 600;
+    .novasistek{
+      font-weight: 600;
     font-size: 20px;
     letter-spacing: 6px;
+    }
+    img{
+      width: 50px;
+    height: 50px;
+    }
   }
 }
 nav {
