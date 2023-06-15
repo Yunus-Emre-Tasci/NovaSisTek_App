@@ -1,31 +1,27 @@
 <template>
   <div class="appHeader" id="appHeader">
-    <div class="logo" @click="goToHome"><img src="https://media.licdn.com/dms/image/C4D0BAQHHbMKtZ0PVFA/company-logo_200_200/0/1604813119159?e=2147483647&v=beta&t=wEGHNp_cofMgFawUc0C49tZpZU71ljALCot0y3k94xk" alt="Logo"><span class="novasistek">NovaSisTek</span></div>
-    <div class="box" @click="toggleShopContext">
-      <div class="badge" v-if="basketsLength !== 0">{{ basketsLength }}</div>
-      <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+    <div class="topHeader">
+      <div class="logo" @click="goToHome"><img src="https://media.licdn.com/dms/image/C4D0BAQHHbMKtZ0PVFA/company-logo_200_200/0/1604813119159?e=2147483647&v=beta&t=wEGHNp_cofMgFawUc0C49tZpZU71ljALCot0y3k94xk" alt="Logo"><span class="novasistek">NovaSisTek</span></div>
+      <div class="box" @click="toggleShopContext">
+       <div class="badge" v-if="basketsLength !== 0">{{ basketsLength }}</div>
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
         stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
         
         <path
           d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
       </svg>
-    </div>
-    <div class="toggleTheme">
+     </div>
+     <div class="toggleTheme">
       <nav>
-  <button
-    
-    title="Toggle dark/light mode"
-    @click="toggleDarkMode"
-  >
-  <span v-if="darkMode">
-    <svg
-      aria-hidden="true"
-      icon="moon"
-      fill="currentColor"
-      viewBox="0 0 20 20"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+       <button title="Toggle dark/light mode" @click="toggleDarkMode">
+        <span v-if="darkMode">
+         <svg
+          aria-hidden="true"
+          icon="moon"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg">
+           <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
     </svg>
     </span>
     <span v-else>
@@ -45,6 +41,7 @@
     </span>
   </button>
       </nav>
+    </div>
     </div>
   </div>
 </template>
@@ -115,58 +112,73 @@ export default {
   color: #fff;
 }
 .appHeader {
-  border-bottom: 1px solid #eff1f3;
   width: 100%;
-  padding-left: 64px;
-  padding-right: 64px;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: fixed;
-  top: 0;
-  background-color: #fff; /* varsayılan arka plan rengi */
+  background-image: url("https://i0.wp.com/www.thexboxhub.com/wp-content/uploads/2021/07/marvels-avengers-new-dlc-packs.jpeg?fit=1920%2C1080&ssl=1");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height:400px ;
+  background-position: center;
+  /* background-color: #fff;  */
+  /* varsayılan arka plan rengi */
   /* background-color: var(--appHeader-background); CSS değişkeni kullanarak arka plan rengi */
-  transition: background-color 0.3s ease; /* geçiş efekti */
-
-  .badge {
-    display: flex;
+  /* transition: background-color 0.3s ease; geçiş efekti */
+  .topHeader{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left:0;
+    min-width: 100vw;
+    margin: 10px auto;
+    display:flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    width: 16px;
-    height: 16px;
-    color: #fff;
-    border-radius: 100%;
-    background-color: #1874ff;
-    font-size: 10px;
-    top: -8px;
-    right: -8px;
-    position: absolute;
-  }
+    padding:5px 30px;
 
-  .box {
-    position: relative;
-    cursor: pointer;
-    color: #374051;
-    transition: all 0.5s;
+    .logo{
+      display:flex;
+      align-items: center;
+      cursor: pointer;
+      .novasistek{
+        font-weight: 600;
+        font-size: 20px;
+        letter-spacing: 3px;
+        color:white;
+        margin-left:10px
+      }
+      img{
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    .box {
+      /* display: flex;
+      justify-content: flex-end; */
+      position: relative;
+      cursor: pointer;
+      color:red;
+      transition: all 0.5s;
+      /* margin-left:15rem; */
+     
+     .badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 16px;
+        height: 16px;
+        color: #fff;
+        border-radius: 100%;
+        background-color: #1874ff;
+        font-size: 10px;
+        top: -8px;
+        right: -8px;
+        position: absolute;
+     }
 
     &:hover {
       color: #1874ff;
     }
   }
-
-  .logo {
-    cursor: pointer;
-    .novasistek{
-      font-weight: 600;
-    font-size: 20px;
-    letter-spacing: 6px;
-    }
-    img{
-      width: 50px;
-    height: 50px;
-    }
   }
 }
 nav {
@@ -207,12 +219,6 @@ nav {
     &:focus svg {
       stroke: #1e40af;
     }
-
-    /* &[data-testid="togglebutton"] {
-      &[title="Toggle dark/light mode"] {
-        // Özel stillemeler buraya eklenebilir
-      }
-    } */
   }
 
   svg[aria-hidden="true"] {
@@ -222,5 +228,4 @@ nav {
     color: #4b5563;
   }
 }
-
 </style>
