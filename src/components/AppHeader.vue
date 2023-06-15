@@ -1,6 +1,6 @@
 <template>
   <div class="appHeader" id="appHeader">
-    <div class="topHeader">
+    <div class="topHeader" id="topHeader">
       <div class="logo" @click="goToHome"><img src="https://media.licdn.com/dms/image/C4D0BAQHHbMKtZ0PVFA/company-logo_200_200/0/1604813119159?e=2147483647&v=beta&t=wEGHNp_cofMgFawUc0C49tZpZU71ljALCot0y3k94xk" alt="Logo"><span class="novasistek">NovaSisTek</span></div>
       <div class="box" @click="toggleShopContext">
        <div class="badge" v-if="basketsLength !== 0">{{ basketsLength }}</div>
@@ -64,16 +64,14 @@ export default {
 
     // Scroll olayını dinle
     window.addEventListener("scroll", function() {
-      var appHeader = document.getElementById("appHeader");
+      var topHeader = document.getElementById("topHeader");
       var scrollPosition = window.scrollY;
-      var threshold = 100; // Eşik değeri, arka planın değişeceği scroll miktarı
+      var threshold = 75; // Eşik değeri, arka planın değişeceği scroll miktarı
 
       if (scrollPosition > threshold) {
-        // appHeader.style.setProperty('--appHeader-background', '#333');
-        appHeader.style.backgroundColor = "#333";
+        topHeader.style.backgroundColor = "rgba(51, 51, 51, 0.9)";
       } else {
-        // appHeader.style.setProperty('--appHeader-background', '#fff');
-        appHeader.style.backgroundColor = "#fff"; // Varsayılan arka plan rengi
+        topHeader.style.backgroundColor = "unset"; // Varsayılan arka plan rengi
       }
     });
 
@@ -116,23 +114,21 @@ export default {
   background-image: url("https://i0.wp.com/www.thexboxhub.com/wp-content/uploads/2021/07/marvels-avengers-new-dlc-packs.jpeg?fit=1920%2C1080&ssl=1");
   background-repeat: no-repeat;
   background-size: cover;
-  height:400px ;
+  height:500px ;
   background-position: center;
-  /* background-color: #fff;  */
-  /* varsayılan arka plan rengi */
-  /* background-color: var(--appHeader-background); CSS değişkeni kullanarak arka plan rengi */
-  /* transition: background-color 0.3s ease; geçiş efekti */
+  box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.6);
   .topHeader{
     position: fixed;
     top: 0;
     right: 0;
     left:0;
-    min-width: 100vw;
-    margin: 10px auto;
+    min-width: 100%;
     display:flex;
     justify-content: space-between;
     align-items: center;
-    padding:5px 30px;
+    padding:10px 60px 10px 35px;
+    background-color: var(--topHeader-background);  //CSS değişkeni kullanarak   arka plan rengi
+    transition: background-color 0.2s ease;  //geçiş efekti
 
     .logo{
       display:flex;
@@ -143,7 +139,7 @@ export default {
         font-size: 20px;
         letter-spacing: 3px;
         color:white;
-        margin-left:10px
+        margin-left:17px
       }
       img{
         width: 50px;
@@ -152,13 +148,11 @@ export default {
     }
 
     .box {
-      /* display: flex;
-      justify-content: flex-end; */
       position: relative;
       cursor: pointer;
-      color:red;
+      color:rgba(255, 0, 0, 0.6);
       transition: all 0.5s;
-      /* margin-left:15rem; */
+      margin-left:auto;
      
      .badge {
         display: flex;
@@ -176,7 +170,7 @@ export default {
      }
 
     &:hover {
-      color: #1874ff;
+      color:red;
     }
   }
   }
