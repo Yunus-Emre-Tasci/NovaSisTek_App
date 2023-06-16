@@ -1,15 +1,28 @@
 <template>
-  <div class="card" @click="goToDetail">
+  <div class="card">
     <img class="thumbnail" :src="`${item.thumbnail.path}.jpg`" alt="">
+    <div @click="onClickBox" class="like"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"
+        stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+        
+        <path
+          d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg></div>
 
-   <div class="content">
-    <div class="title">{{item.title}}</div>
-    <div class="description">{{ item.description }}</div>
+   <div @click="goToDetail" class="content">
+    <div class="title">
+      <div v-if="item.title"><h3 >{{item.title}}</h3></div>
+    <div v-else><h3>Title</h3></div>
+    </div>
+    <div class="description">
+      <div v-if="item.description">{{ item.description }}</div>
+      <div v-else>Marvel</div>
+    </div>
     <div class="creators">
+      <span><h4>Creators:</h4> </span>
        <div v-if="item.creators && item.creators.items.length > 0">
          <div class="creator">
           <div v-for="creator in item.creators.items" :key="creator.id">
-            {{ creator.name }},
+             {{ creator.name }},
           </div>
         </div>
       </div>
@@ -23,7 +36,7 @@
 
 <script>
 import { useRouter } from 'vue-router';
-import { toRefs } from 'vue';
+import { toRefs,useEmit } from 'vue';
 
 export default {
   props: ['item'],
@@ -32,11 +45,18 @@ export default {
     const { item } = toRefs(props);
     console.log(item.value);
     const router = useRouter();
+    const emit = useEmit();
+
+    const onClickBox = () => {
+      emit('onClickBox', props.item);
+    };
+
     const goToDetail = () => {
       router.push({ path: '/detail', query: { itemId: item.value.id } });
     };
     return {
       goToDetail,
+      onClickBox,
     };
   }
 
@@ -48,14 +68,20 @@ export default {
   width: 250px;
   height: 300px;
   margin: 10px auto;
-  border: 1px solid red;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding: 5px;
   cursor: pointer;
   position: relative;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.6);
 
+  .like{
+    position: absolute;
+    top:2px;
+    right:2px;
+    color:rgba(255, 0, 0, 0.815);
+    cursor: pointer;
+  }
   .thumbnail{
     width: 100%;
     height: 100%;
@@ -71,16 +97,34 @@ export default {
     transform: translateY(100%);
     transition: transform 1s ease-in-out;
     width: 100%;
-    height: 100%;
+    height: 90%;
     border-radius: 2rem;
-    background-color: rgba(51,51, 51, 0.7  );
+    color:white;
+    background-color: rgba(51,51, 51, 0.7 );
+
+    .title{
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .description{
+      margin-top:8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .creators{
+      margin-top:20px;
+      display: flex;
+      /* justify-content: center; */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
   &:hover .content{
     transform: translateY(0%);
   }
 }
-   /* .creator{ */
-    /* display: flex; */
-    /* justify-content: center; */
-   /* } */
 </style>

@@ -3,6 +3,7 @@
     <h2>Comics</h2>
     <div class="flex">
     <ComicCard
+      @onClickBox="onClickBox"
       v-for="item in comics"
       :item="item"
       :key="item.id"
@@ -15,6 +16,7 @@
 import { ref,onMounted } from 'vue';
 import ComicCard from '@/components/ComicCard.vue'
 import axios from "axios"
+import { useStore } from 'vuex';
 
 export default {
   name: 'HomeView',
@@ -23,6 +25,7 @@ export default {
   },
   setup(){
     const comics = ref([]);
+    const store = useStore();
     
     const baseUrl=process.env.VUE_APP_BASE_URL
     const hash = process.env.VUE_APP_HASH;
@@ -42,6 +45,25 @@ export default {
       comics.value=data.data.results
       } catch (error) {
         console.log(error);
+      }
+    };
+
+    const onClickBox = (data) => {
+      const basketArr = [...store.getters.getBaskets];
+      const isExistInBasket = basketArr.find((b) => b.id === data.id);
+      if (isExistInBasket) {
+        const idx = data.value.findIndex((i) => i.id === data.id);
+        if (idx > -1) {
+          data.value[idx].inBox = false;
+        }
+        store.dispatch('removeBaskets', data);
+      } else {
+        const idx = data.value.findIndex((i) => i.id === data.id);
+        addBasketService(data);
+        if (idx >        -1) {
+          data.value[idx].inBox = true;
+        }
+        store.dispatch('addBaskets', data);
       }
     };
 
