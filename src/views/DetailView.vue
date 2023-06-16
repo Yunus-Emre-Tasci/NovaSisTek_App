@@ -181,7 +181,7 @@ export default {
         a{
           padding: 5px 8px;
           text-decoration: none;
-          color: red;
+          color: red; 
           outline: none;
           border: none;
           font-weight: 600;
