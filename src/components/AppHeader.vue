@@ -142,7 +142,7 @@ export default {
     align-items: center;
     padding:10px 60px 10px 35px;
     background-color: var(--topHeader-background);  //CSS değişkeni kullanarak   arka plan rengi
-    transition: background-color 0.2s ease;  //geçiş efekti
+    transition: background-color 0.3s ease;  //geçiş efekti
 
     .logo{
       display:flex;

@@ -51,21 +51,22 @@ export default {
 
     const onClickBox = (data) => {
       const basketArr = [...store.getters.getBaskets];
-      const isExistInBasket = basketArr.find((b) => b.id === data.id);
-      if (isExistInBasket) {
-        const idx = data.value?.findIndex((i) => i.id === data.id);
-        if (idx > -1) {
-          data.value[idx].inBox = false;
-        }
-        store.dispatch('removeBasket', data);
-      } else {
-        const idx = data.value.findIndex((i) => i.id === data.id);
-        addBasketService(data);
-        if (idx >        -1) {
-          data.value[idx].inBox = true;
-        }
-        store.dispatch('addBasket', data);
-      }
+      console.log(basketArr);
+      // const isExistInBasket = basketArr?.find((b) => b.id === data.id);
+      // if (isExistInBasket) {
+      //   const idx = data.value.findIndex((i) => i.id === data.id);
+      //   if (idx > -1) {
+      //     data.value[idx].inBox = false;
+      //   }
+      //   store.dispatch('removeBasket', data);
+      // } else {
+      //   const idx = data.value.findIndex((i) => i.id === data.id);
+      //   addBasketService(data);
+      //   if (idx > -1) {
+      //     data.value[idx].inBox = true;
+      //   }
+      //   store.dispatch('addBasket', data);
+      // }
     };
 
     onMounted(() => {
@@ -91,6 +92,5 @@ export default {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
-    border: 1px solid black;
    }
 </style>
