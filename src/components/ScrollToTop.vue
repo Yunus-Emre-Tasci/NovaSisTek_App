@@ -1,9 +1,7 @@
 <template>
   <div :class="isDarkMode ? 'dark-mode' : ''" class="scrollToTop" v-if="visible"
       @click="scrollToTop">
-    <div class="" >
-      <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
-    </div>
+      <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
   </div>
 </template>
 
@@ -15,9 +13,6 @@ import { useStore } from 'vuex';
 
 export default {
   name: 'ScrollToTop',
-  components: {
-    FaArrowCircleUp,
-  },
   setup() {
     const visible = ref(false);
     const store = useStore();
@@ -54,21 +49,33 @@ export default {
 <style scoped lang="scss">
   .scrollToTop{
     position: fixed;
-    bottom: 20px;
-    width: 100%;
-    height: 4px;
-    left: 91vw;
-    font-size: 5xl;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 60px;
+    width: 40px;
+    height: 40px;
+    /* width: 100%; */
+    left: 93vw;
+    /* background-color: transparent; */
+    border:0.5px solid rgba(51, 51, 51, 0.9);
+    background-color: rgba(51, 51, 51, 0.9);
+    border-radius: 100%;
+    /* font-size: 36px; */
     z-index: 10;
     cursor: pointer;
-    color: #dc2626;
+    color: white;
+    .arrow{
+        z-index: 20;
+    }
 
     &:hover{
-        color: #f87171;
+        color: red;
     }
   }
 
   .dark-mode{
-    color:white
+    background-color:white;
+    color:rgba(51, 51, 51, 0.9);
   }
 </style>
