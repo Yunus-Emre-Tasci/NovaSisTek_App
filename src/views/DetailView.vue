@@ -1,21 +1,24 @@
 <template>
   <div class="detail">
-    Detay Sayfası
-    <div>{{ itemId }}</div>
-    <div>{{ details.title }}</div>
-    <div>
-      <div v-if="details.description"><div>{{ details.description }}</div></div>
-      <div v-else>MARVEL</div>
+    <img :src="`${image}.jpg`" alt="">
+    <div class="content">
+      <div class="title"><h2>{{ details.title }}</h2></div>
+      <div class="text" >
+        <div v-if="text"><div><p>{{ text }}</p></div></div>
+        <div v-else>MARVEL TEXTS</div>
+      </div>
+      <div class="creators">
+        <h4>CREATORS</h4>
+        <div class="creator" v-if="creators.length>0"><div v-for="creator in creators" :key="creator.id"><li>{{ creator }}</li></div></div>
+        <div v-else>Marvel Heros</div>
+      </div>
+      <div class="characters">
+        <h4>CHARACTERS</h4>
+        <div class="character" v-if="characters.length>0"><div v-for="character in characters" :key="character.id"><li>{{ character }}</li></div></div>
+        <div v-else>Marvel Heros</div>
+      </div>
+      <div class="moreDetail"><a :href="url" target="_blank">More Detail</a></div>
     </div>
-    <div>
-      <div v-if="creators.length>0"><div v-for="creator in creators" :key="creator.id">{{ creator }}</div></div>
-      <div v-else>Marvel</div>
-    </div>
-    <div>
-      <div v-if="characters.length>0"><div v-for="character in characters" :key="character.id">{{ character }}</div></div>
-      <div v-else>Marvel</div>
-    </div>
-    <div>{{ url }}</div>
 
     
   </div>
@@ -32,9 +35,11 @@ export default {
     const itemId = ref(null);
     const router=useRouter()
     const details = ref([]);
-    const url=ref(null);
+    const url=ref("");
     const creators=ref([]);
     const characters=ref([]);
+    const text=ref("")
+    const image=ref("")
     
 
     const apiKey = process.env.VUE_APP_API_KEY;
@@ -63,6 +68,9 @@ export default {
         url.value=data.data.results[0].urls[0].url
         creators.value=data.data.results[0].creators.items.map((item)=>item.name)
         characters.value=data.data.results[0].characters.items.map((item)=>item.name)
+        text.value=data.data.results[0].textObjects[0].text
+        image.value=data.data.results[0].images[0].path
+        console.log(url.value);
       } catch (error) {
         console.error(error);
       }
@@ -74,6 +82,8 @@ export default {
       url,
       creators,
       characters,
+      text,
+      image,
     };
   },
 };
@@ -81,7 +91,112 @@ export default {
 
 <style scoped lang="scss">
 .detail{
-  height: 100vh;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+
+  img{
+    width: 40%;
+    height:500px ;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+  }
+  .content{
+    padding: 20px;
+    min-height: 100vh;
+    .title{
+      text-align: center;
+      h2{
+        font-size: 25px;
+        font-weight: 700px;
+      }
+    }
+    .text{
+      margin-top:10px;
+      p{
+        letter-spacing: 2px;
+      }
+    }
+    .creators{
+      margin-top: 10px;
+      h4{
+        border-bottom: 1px solid red;
+      }
+      .creator{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        li{
+        margin-top:5px;
+        list-style-type: none;
+        color: #fff;
+        outline: none;
+        border: none;
+        font-weight: 600;
+        border-radius: 0.2vw;
+        background-color: rgba(51,51, 51, 0.5);
+        padding: 3px 6px;
+        transition: all 0.3s easy;
+
+        &:hover{
+          background-color: white;
+          color:black
+        }
+      }
+      }
+    }
+    .characters{
+      margin-top: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+      h4{
+        border-bottom: 1px solid red;
+      }
+      .character{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+          li{
+            margin-top:5px;
+            list-style-type: none;
+            color: #fff;
+            outline: none;
+            border: none;
+            font-weight: 600;
+            border-radius: 0.2vw;
+            background-color: rgba(51,  51, 51, 0.5);
+            padding: 3px 6px;
+            transition: all 0.5s easy;
+    
+            &:hover{
+              background-color: white;
+              color:black
+            }
+      }
+      }
+    }
+    .moreDetail{
+        margin-top: 15px;
+        text-align: center;
+        a{
+          padding: 5px 8px;
+          text-decoration: none;
+          color: red;
+          outline: none;
+          border: none;
+          font-weight: 600;
+          border-radius: 0.2vw;
+          background-color: rgba(51,51,   51, 0.5);
+          /* padding: 3px 6px; */
+          transition: all 0.5s easy;
+  
+          &:hover{
+            background-color: white;
+            color:black
+          }
+      }
+      }
+  }
 }
 </style>
 
