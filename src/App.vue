@@ -8,6 +8,7 @@
 <template>
   <div :class="{'dark-mode': darkMode}">
   <AppHeader :darkMode="darkMode" :toggleDarkMode="toggleDarkMode" />
+  <ScrollToTop/>
   <Container />
   </div>
 </template>
@@ -15,6 +16,7 @@
 <script>
 import Container from "./components/Container.vue";
 import AppHeader from "./components/AppHeader.vue"
+import ScrollToTop from "./components/ScrollToTop.vue"
 import { ref, computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 
@@ -22,7 +24,8 @@ export default {
   name: 'App',
   components: {
     AppHeader,
-    Container
+    Container,
+    ScrollToTop,
   },
   setup() {
     const store = useStore();
