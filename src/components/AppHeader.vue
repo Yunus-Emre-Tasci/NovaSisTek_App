@@ -2,7 +2,7 @@
   <div class="appHeader" id="appHeader">
     <div class="topHeader" id="topHeader">
       <div class="logo" @click="goToHome"><img src="https://media.licdn.com/dms/image/C4D0BAQHHbMKtZ0PVFA/company-logo_200_200/0/1604813119159?e=2147483647&v=beta&t=wEGHNp_cofMgFawUc0C49tZpZU71ljALCot0y3k94xk" alt="Logo"><span class="novasistek">NovaSisTek</span></div>
-      <div class="box" @click="toggleShopContext">
+      <div class="box">
        <div class="badge" v-if="basketsLength !== 0">{{ basketsLength }}</div>
         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
         stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
@@ -73,7 +73,7 @@ export default {
   setup() {
     const router = useRouter();
     const store = useStore();
-    const show = ref(false);
+    // const show = ref(false);
 
     // Scroll olayını dinle
     window.addEventListener("scroll", function() {
@@ -92,25 +92,25 @@ export default {
       return store.getters.getBasketsLength;
     });
 
-    const toggleShopContext = () => {
-      if (basketsLength.value !== 0) {
-        show.value = !show.value;
-      }
-    };
+    // const toggleShopContext = () => {
+    //   if (basketsLength.value !== 0) {
+    //     show.value = !show.value;
+    //   }
+    // };
 
-    const hideShopContext = () => {
-      show.value = false;
-    };
+    // const hideShopContext = () => {
+    //   show.value = false;
+    // };
 
     const goToHome = () => {
       router.push('/');
     };
 
     return {
-      show,
+      // show,
       basketsLength,
-      toggleShopContext,
-      hideShopContext,
+      // toggleShopContext,
+      // hideShopContext,
       goToHome,
     };
   },

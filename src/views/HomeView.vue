@@ -3,7 +3,8 @@
     <h2>Comics</h2>
     <div class="flex">
     <ComicCard
-      @onClickBox="onClickBox"
+    v-on:onClickBox="onClickBox($event)"
+      
       v-for="item in comics"
       :item="item"
       :key="item.id"
@@ -52,18 +53,18 @@ export default {
       const basketArr = [...store.getters.getBaskets];
       const isExistInBasket = basketArr.find((b) => b.id === data.id);
       if (isExistInBasket) {
-        const idx = data.value.findIndex((i) => i.id === data.id);
+        const idx = data.value?.findIndex((i) => i.id === data.id);
         if (idx > -1) {
           data.value[idx].inBox = false;
         }
-        store.dispatch('removeBaskets', data);
+        store.dispatch('removeBasket', data);
       } else {
         const idx = data.value.findIndex((i) => i.id === data.id);
         addBasketService(data);
         if (idx >        -1) {
           data.value[idx].inBox = true;
         }
-        store.dispatch('addBaskets', data);
+        store.dispatch('addBasket', data);
       }
     };
 
@@ -72,7 +73,8 @@ export default {
     });
 
     return {
-      comics
+      comics,
+      onClickBox,
     };
   }
 }

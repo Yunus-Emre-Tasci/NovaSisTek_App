@@ -36,18 +36,18 @@
 
 <script>
 import { useRouter } from 'vue-router';
-import { toRefs} from 'vue';
+import { toRefs } from 'vue';
 
 export default {
   props: ['item'],
   name: 'ComicCard',
-  setup(props){
+  setup(props,{ emit }){
     const { item } = toRefs(props);
     console.log(item.value);
     const router = useRouter();
 
     const onClickBox = () => {
-      $emit('onClickBox', props.item);
+      emit('onClickBox', props.item);
     };
 
     const goToDetail = () => {
