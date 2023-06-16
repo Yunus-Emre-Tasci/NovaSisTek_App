@@ -43,31 +43,42 @@ export default {
             }
           })
       // console.log(data);
-      comics.value=data.data.results
+      
+      comics.value = data.data.results.map((comic) => {
+        return {
+          ...comic,
+          inBox: false, // Başlangıç değeri false olarak ayarla
+        };
+      });
       } catch (error) {
         console.log(error);
       }
     };
 
-    const onClickBox = (data) => {
-      const basketArr = [...store.getters.getBaskets];
-      console.log(basketArr);
-      // const isExistInBasket = basketArr?.find((b) => b.id === data.id);
-      // if (isExistInBasket) {
-      //   const idx = data.value.findIndex((i) => i.id === data.id);
-      //   if (idx > -1) {
-      //     data.value[idx].inBox = false;
-      //   }
-      //   store.dispatch('removeBasket', data);
-      // } else {
-      //   const idx = data.value.findIndex((i) => i.id === data.id);
-      //   addBasketService(data);
-      //   if (idx > -1) {
-      //     data.value[idx].inBox = true;
-      //   }
-      //   store.dispatch('addBasket', data);
-      // }
-    };
+    const onClickBox = (item) => {
+  const basketArr = [...store.getters.getBaskets];
+  console.log(basketArr);
+  console.log(store.getters.getBaskets);
+  console.log(store.getters.getBasketsLength);
+  const isExistInBasket = basketArr.find((b) => b.id === item.id);
+  if (isExistInBasket) {
+    const idx = comics.value.findIndex((i) => i.id === item.id);
+    console.log(idx);
+    if (idx > -1) {
+      comics.value[idx].inBox = false;
+    }
+    store.dispatch('removeBasket', item);
+  } else {
+    const idx = comics.value.findIndex((i) => i.id === item.id);
+    console.log(idx);
+    // addBasketService(data);
+    if (idx > -1) {
+      comics.value[idx].inBox = true;
+    }
+    store.dispatch('addBasket', item);
+  }
+};
+
 
     onMounted(() => {
       getAllComics();

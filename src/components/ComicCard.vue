@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <img class="thumbnail" :src="`${item.thumbnail.path}.jpg`" alt="">
-    <div @click="onClickBox" :class="item.inBox?'boxActive':''" class="like"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"
+    <div @click="onClickBox" :class="item.inBox?'boxActive':''" class="like"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" :fill="item.inBox ? '#1874ff' : 'none'"
         stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
         
         <path
@@ -74,16 +74,15 @@ export default {
   cursor: pointer;
   position: relative;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-
-  .boxActive{
-    color:#1874ff;
-  }
   .like{
     position: absolute;
     top:2px;
     right:2px;
     color:rgba(255, 0, 0, 0.815);
     cursor: pointer;
+  }
+  .boxActive{
+    color:#1874ff;
   }
   .thumbnail{
     width: 100%;
