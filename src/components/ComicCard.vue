@@ -36,7 +36,7 @@
 
 <script>
 import { useRouter } from 'vue-router';
-import { toRefs,useEmit } from 'vue';
+import { toRefs} from 'vue';
 
 export default {
   props: ['item'],
@@ -45,15 +45,15 @@ export default {
     const { item } = toRefs(props);
     console.log(item.value);
     const router = useRouter();
-    const emit = useEmit();
 
     const onClickBox = () => {
-      emit('onClickBox', props.item);
+      $emit('onClickBox', props.item);
     };
 
     const goToDetail = () => {
       router.push({ path: '/detail', query: { itemId: item.value.id } });
     };
+
     return {
       goToDetail,
       onClickBox,
