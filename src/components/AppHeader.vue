@@ -1,7 +1,7 @@
 <template>
   <div class="appHeader" id="appHeader">
     <div class="topHeader" id="topHeader">
-      <div class="logo" @click="goToHome"><img src="https://media.licdn.com/dms/image/C4D0BAQHHbMKtZ0PVFA/company-logo_200_200/0/1604813119159?e=2147483647&v=beta&t=wEGHNp_cofMgFawUc0C49tZpZU71ljALCot0y3k94xk" alt="Logo"><span class="novasistek">NovaSisTek</span></div>
+      <div class="logo" @click="goToHome"><img class="imgLogo" src="https://media.licdn.com/dms/image/C4D0BAQHHbMKtZ0PVFA/company-logo_200_200/0/1604813119159?e=2147483647&v=beta&t=wEGHNp_cofMgFawUc0C49tZpZU71ljALCot0y3k94xk" alt="Logo"><span class="novasistek">NovaSisTek</span></div>
       <div class="box">
        <div class="badge" v-if="basketsLength !== 0">{{ basketsLength }}</div>
         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="red"
@@ -153,11 +153,13 @@ export default {
         font-size: 20px;
         letter-spacing: 3px;
         color:white;
-        margin-left:17px
+        margin-left:17px;
+        text-shadow:2px 2px 4px rgba(0, 0, 0, 0.6);
       }
       img{
         width: 50px;
         height: 50px;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
       }
     }
 
@@ -251,6 +253,7 @@ nav {
     transition: background-color 0.2s, color 0.2s;
     cursor: pointer;
     outline: none;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 
     &:hover {
       background-color: #edf2f7;

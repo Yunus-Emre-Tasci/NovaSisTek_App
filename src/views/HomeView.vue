@@ -95,7 +95,9 @@ export default {
 <style scoped lang="scss">
 .home{
   h2{
-    margin-top:-15px
+    margin-top:-18px;
+    text-shadow:2px 2px 5px rgba(0, 0, 0, 0.5);
+    letter-spacing:4px;
   }
 }
    .flex{
