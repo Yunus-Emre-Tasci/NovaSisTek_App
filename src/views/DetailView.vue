@@ -17,7 +17,7 @@
         <div class="character" v-if="characters.length>0"><div v-for="character in characters" :key="character.id"><li>{{ character }}</li></div></div>
         <div v-else>Marvel Heros</div>
       </div>
-      <div class="moreDetail"><a :href="url" target="_blank">More Detail</a></div>
+      <div class="moreDetail"><a :href="url" target="_blank">More Detail ⇲</a></div>
     </div>
 
     
@@ -99,7 +99,7 @@ export default {
 
   img{
     width: 40%;
-    height:500px ;
+    max-height:500px ;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
   }
   .content{
@@ -176,23 +176,24 @@ export default {
       }
     }
     .moreDetail{
-        margin-top: 15px;
+        margin-top: 20px;
+        padding-top:10px;
         text-align: center;
         a{
-          padding: 5px 8px;
+          padding: 8px 20px;
           text-decoration: none;
-          color: red; 
+          color: rgba(255, 0, 0, 0.781); 
           outline: none;
           border: none;
-          font-weight: 600;
+          font-size:18px;
+          font-weight: 700;
           border-radius: 0.2vw;
           background-color: rgba(51,51,   51, 0.5);
-          /* padding: 3px 6px; */
           transition: all 0.5s easy;
   
           &:hover{
-            background-color: white;
-            color:black
+            background-color: rgba(255, 0, 0, 0.781);
+            color:black;
           }
       }
       }
