@@ -37,7 +37,7 @@ export default {
         const {data}=await axios.get(`${baseUrl}`,{
             params: {
               ts: 1,
-              limit: 40,
+              limit: 60,
               apikey: apiKey,
               hash: hash,
             }
