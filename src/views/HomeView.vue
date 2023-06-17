@@ -71,7 +71,6 @@ export default {
   } else {
     const idx = comics.value.findIndex((i) => i.id === item.id);
     console.log(idx);
-    // addBasketService(data);
     if (idx > -1) {
       comics.value[idx].inBox = true;
     }

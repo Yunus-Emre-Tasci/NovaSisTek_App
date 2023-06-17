@@ -73,7 +73,6 @@ export default {
   setup() {
     const router = useRouter();
     const store = useStore();
-    // const show = ref(false);
 
     // Scroll olayını dinle
     window.addEventListener("scroll", function() {
@@ -92,25 +91,12 @@ export default {
       return store.getters.getBasketsLength;
     });
 
-    // const toggleShopContext = () => {
-    //   if (basketsLength.value !== 0) {
-    //     show.value = !show.value;
-    //   }
-    // };
-
-    // const hideShopContext = () => {
-    //   show.value = false;
-    // };
-
     const goToHome = () => {
       router.push('/');
     };
 
     return {
-      // show,
       basketsLength,
-      // toggleShopContext,
-      // hideShopContext,
       goToHome,
     };
   },

@@ -1,10 +1,3 @@
-<!-- <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
-</template> -->
 <template>
   <div :class="{'dark-mode': darkMode}">
   <AppHeader :darkMode="darkMode" :toggleDarkMode="toggleDarkMode" />
@@ -29,7 +22,6 @@ export default {
   },
   setup() {
     const store = useStore();
-    // const darkMode = ref(store.state.darkMode);
     const darkMode = computed(() => store.state.darkMode);
 
     const toggleDarkMode = () => {

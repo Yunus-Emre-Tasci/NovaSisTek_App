@@ -102,10 +102,6 @@ export default {
     min-width: 40%;
     height:550px ;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-    /* img{
-      width: 100%;
-      height: auto;
-    } */
   }
   .content{
     padding: 20px;

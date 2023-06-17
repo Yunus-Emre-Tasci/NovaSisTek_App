@@ -120,7 +120,6 @@ export default {
     .creators{
       margin-top:20px;
       display: flex;
-      /* justify-content: center; */
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;

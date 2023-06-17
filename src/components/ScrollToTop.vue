@@ -5,8 +5,6 @@
   </div>
 </template>
 
-<!-- class="fixed w-100 bottom-20 h-4 left-[91vw] text-5xl z-1 cursor-pointer text-red-600 hover:text-red-400 dark:text-white dark:hover:text-gray-400" -->
-
 <script>
 import { ref, onMounted, computed  } from 'vue';
 import { useStore } from 'vuex';
@@ -55,13 +53,10 @@ export default {
     bottom: 60px;
     width: 40px;
     height: 40px;
-    /* width: 100%; */
     left: 93vw;
-    /* background-color: transparent; */
     border:0.5px solid rgba(51, 51, 51, 0.9);
     background-color: rgba(51, 51, 51, 0.9);
     border-radius: 100%;
-    /* font-size: 36px; */
     z-index: 10;
     cursor: pointer;
     color: white;
