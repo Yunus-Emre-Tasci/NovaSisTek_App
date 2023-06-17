@@ -11,12 +11,12 @@
       <div class="creators">
         <h4>CREATORS</h4>
         <div class="creator" v-if="creators.length>0"><div v-for="creator in creators" :key="creator.id"><li>{{ creator }}</li></div></div>
-        <div v-else>Marvel Heros</div>
+        <div class="creator" v-else><li>Marvel Heros</li></div>
       </div>
       <div class="characters">
         <h4>CHARACTERS</h4>
         <div class="character" v-if="characters.length>0"><div v-for="character in characters" :key="character.id"><li>{{ character }}</li></div></div>
-        <div v-else>Marvel Heros</div>
+        <div class="character" v-else><li>Marvel Heros</li></div>
       </div>
       <div class="moreDetail"><a :href="url" target="_blank">More Detail ⇲</a></div>
     </div>
