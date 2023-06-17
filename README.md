@@ -10,10 +10,16 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## `Libraries Used`
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- `axios`
+- `core-js`
+- `vue`
+- `vue-router`
+- `vuex`
+- `vuex-persist`
+- `sass`
+
+
+https://github.com/Yunus-Emre-Tasci/NovaSisTek_App/assets/109620221/facbd239-dc47-4cd0-a0cc-d10b701eed79
+
