@@ -7,18 +7,12 @@
       :key="item.id"
     >
       <div class="image">
-        <img :src="item.image" />
+        <img :src="`${item.thumbnail.path}.jpg`" />
       </div>
       <div class="content">
-        <!-- buraya title yazılabilir  -->
-
-        <!-- <div class="title">{{ item.title }}</div>
-        <div class="price">{{ item.price }} TL</div> -->
+        <p>{{ item.title }}</p>
       </div>
     </div>
-    <!-- <div class="contextItem complateBox" @click="goBasket">
-      Sepete Git !
-    </div> -->
   </div>
 </template>
 
@@ -30,8 +24,6 @@ export default {
   name: 'LikedComics',
   setup() {
     const store = useStore();
-    // const baskets = ref([]);   buna gerek yok
-    // const basketsLength = ref(0);  buna gerek yok
 
     const basketsLength = computed(() => {
       return store.getters.getBasketsLength;
@@ -40,11 +32,7 @@ export default {
     const baskets = computed(() => {
       return store.getters.getBaskets;
     }); 
- 
-    // const goBasket = () => {
-    //   this.$router.push('/basket-preview')
-    //   this.$emit('goBasket')
-    // };
+
 
     return {
       baskets,

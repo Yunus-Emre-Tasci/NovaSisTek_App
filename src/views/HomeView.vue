@@ -3,8 +3,7 @@
     <h2>Comics</h2>
     <div class="flex">
     <ComicCard
-    v-on:onClickBox="onClickBox($event)"
-      
+      v-on:onClickBox="onClickBox($event)"
       v-for="item in comics"
       :item="item"
       :key="item.id"

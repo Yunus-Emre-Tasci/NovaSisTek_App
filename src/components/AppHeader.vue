@@ -4,7 +4,7 @@
       <div class="logo" @click="goToHome"><img class="imgLogo" src="https://media.licdn.com/dms/image/C4D0BAQHHbMKtZ0PVFA/company-logo_200_200/0/1604813119159?e=2147483647&v=beta&t=wEGHNp_cofMgFawUc0C49tZpZU71ljALCot0y3k94xk" alt="Logo"><span class="novasistek">NovaSisTek</span></div>
       <div class="box">
        <div class="badge" v-if="basketsLength !== 0">{{ basketsLength }}</div>
-        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="red"
+        <svg @click="onShow" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="red"
         stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
         
         <path
@@ -61,10 +61,10 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import LikedComicsVue from './LikedComics.vue';
+import LikedComics from '../components/LikedComics.vue';
 
 export default {
   name: 'AppHeader',
@@ -72,7 +72,7 @@ export default {
     darkMode: Boolean,
     toggleDarkMode: Function,
   },
-  components:{LikedComicsVue},
+  components:{LikedComics},
   setup() {
     const router = useRouter();
     const store = useStore();
@@ -80,9 +80,8 @@ export default {
 
     const onShow = () => {
       if (basketsLength.value !== 0) {
-        // Do something
+        show.value = !show.value;
       }
-      show.value = !show.value;
     };
 
     // Scroll olayını dinle
