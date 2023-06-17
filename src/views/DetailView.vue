@@ -131,6 +131,7 @@ export default {
     }
     .creators{
       margin-top: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
       @media (max-width: 768px) {
         font-size: 14px;
        }
@@ -163,6 +164,9 @@ export default {
     .characters{
       margin-top: 10px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+      @media (max-width: 768px) {
+        font-size: 14px;
+       }
       h4{
         border-bottom: 1px solid red;
       }
@@ -170,22 +174,22 @@ export default {
         display: flex;
         flex-wrap: wrap;
         gap: 5px;
-          li{
-            margin-top:5px;
-            list-style-type: none;
-            color: #fff;
-            outline: none;
-            border: none;
-            font-weight: 600;
-            border-radius: 0.2vw;
-            background-color: rgba(51,  51, 51, 0.5);
-            padding: 3px 6px;
-            transition: all 0.5s easy;
-    
-            &:hover{
-              background-color: white;
-              color:black
-            }
+        li{
+        margin-top:5px;
+        list-style-type: none;
+        color: #fff;
+        outline: none;
+        border: none;
+        font-weight: 600;
+        border-radius: 0.2vw;
+        background-color: rgba(51,51, 51, 0.5);
+        padding: 3px 6px;
+        transition: all 0.3s easy;
+
+        &:hover{
+          background-color: white;
+          color:black
+        }
       }
       }
     }
