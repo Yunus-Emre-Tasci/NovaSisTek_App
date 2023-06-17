@@ -1,6 +1,7 @@
 <template>
   <div class="detail">
-    <img :src="`${image}.jpg`" alt="">
+    <img v-if="image" :src="`${image}.jpg`" :alt="details.title"/>
+    <img v-else src="https://cdn.marvel.com/u/prod/marvel/i/mg/b/40/image_not_available/clean.jpg" :alt="details.title"/>
     <div class="content">
       <div class="title"><h2>{{ details.title }}</h2></div>
       <div class="text" >
@@ -98,9 +99,13 @@ export default {
   gap: 15px;
 
   img{
-    width: 40%;
-    max-height:500px ;
+    min-width: 40%;
+    height:550px ;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    /* img{
+      width: 100%;
+      height: auto;
+    } */
   }
   .content{
     padding: 20px;
@@ -110,16 +115,25 @@ export default {
       h2{
         font-size: 25px;
         font-weight: 700px;
+        @media (max-width: 768px) {
+        font-size: 16px;
+       }
       }
     }
     .text{
       margin-top:10px;
       p{
         letter-spacing: 2px;
+        @media (max-width: 768px) {
+        font-size: 12px;
+       }
       }
     }
     .creators{
       margin-top: 10px;
+      @media (max-width: 768px) {
+        font-size: 14px;
+       }
       h4{
         border-bottom: 1px solid red;
       }
