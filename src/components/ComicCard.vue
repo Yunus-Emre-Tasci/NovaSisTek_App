@@ -1,65 +1,116 @@
 <template>
-  <div class="card">
-    <img class="thumbnail" :src="`${item.thumbnail.path}.jpg`" alt="">
-    <div @click="onClickBox" :class="item.inBox?'boxActive':''" class="like"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" :fill="item.inBox ? '#1874ff' : 'none'"
-        stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
-        
-        <path
-          d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-      </svg></div>
-
-   <div @click="goToDetail" class="content">
-    <div class="title">
-      <div v-if="item.title"><h3 >{{item.title}}</h3></div>
-    <div v-else><h3>Title</h3></div>
+  <div class="home">
+    <h2>Comics</h2>
+    <div class="flex">
+      <ComicCard
+        v-on:onClickBox="onClickBox($event)"
+        v-for="item in displayedComics"
+        :item="item"
+        :key="item.id"
+      />
     </div>
-    <div class="description">
-      <div v-if="item.description">{{ item.description }}</div>
-      <div v-else>Marvel</div>
+    <div class="pagination">
+      <button @click="prevPage" :disabled="currentPage === 1">Previous</button>
+      <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
     </div>
-    <div class="creators">
-      <span><h4>Creators:</h4> </span>
-       <div v-if="item.creators && item.creators.items.length > 0">
-         <div class="creator">
-          <div v-for="creator in item.creators.items" :key="creator.id">
-             {{ creator.name }},
-          </div>
-        </div>
-      </div>
-      <div v-else>
-        Marvel
-      </div>
-    </div>
-   </div>
   </div>
 </template>
 
 <script>
-import { useRouter } from 'vue-router';
-import { toRefs } from 'vue';
+import { ref, onMounted, computed } from 'vue';
+import ComicCard from '@/components/ComicCard.vue';
+import axios from "axios";
+import { useStore } from 'vuex';
 
 export default {
-  props: ['item'],
-  name: 'ComicCard',
-  setup(props,{ emit }){
-    const { item } = toRefs(props);
-    console.log(item.value);
-    const router = useRouter();
+  name: 'HomeView',
+  components: {
+    ComicCard
+  },
+  setup() {
+    const comics = ref([]);
+    const store = useStore();
+    const baseUrl = process.env.VUE_APP_BASE_URL;
+    const hash = process.env.VUE_APP_HASH;
+    const apiKey = process.env.VUE_APP_API_KEY;
 
-    const onClickBox = () => {
-      emit('onClickBox', props.item);
+    const currentPage = ref(1);
+    const itemsPerPage = 40;
+
+    const getAllComics = async () => {
+      try {
+        const { data } = await axios.get(`${baseUrl}`, {
+          params: {
+            ts: 1,
+            limit: itemsPerPage,
+            offset: (currentPage.value - 1) * itemsPerPage,
+            apikey: apiKey,
+            hash: hash,
+          }
+        });
+
+        comics.value = data.data.results.map((comic) => {
+          return {
+            ...comic,
+            inBox: false,
+          };
+        });
+      } catch (error) {
+        console.log(error);
+      }
     };
 
-    const goToDetail = () => {
-      router.push({ path: '/detail', query: { itemId: item.value.id } });
+    const onClickBox = (item) => {
+      const basketArr = [...store.getters.getBaskets];
+      const isExistInBasket = basketArr.find((b) => b.id === item.id);
+
+      if (isExistInBasket) {
+        const idx = comics.value.findIndex((i) => i.id === item.id);
+        if (idx > -1) {
+          comics.value[idx].inBox = false;
+        }
+        store.dispatch('removeBasket', item);
+      } else {
+        const idx = comics.value.findIndex((i) => i.id === item.id);
+        if (idx > -1) {
+          comics.value[idx].inBox = true;
+        }
+        store.dispatch('addBasket', item);
+      }
     };
+
+    const totalPages = computed(() => Math.ceil(comics.value.length / itemsPerPage));
+    const displayedComics = computed(() => {
+      const start = (currentPage.value - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      return comics.value.slice(start, end);
+    });
+
+    const nextPage = () => {
+      if (currentPage.value < totalPages.value) {
+        currentPage.value++;
+      }
+    };
+
+    const prevPage = () => {
+      if (currentPage.value > 1) {
+        currentPage.value--;
+      }
+    };
+
+    onMounted(() => {
+      getAllComics();
+    });
 
     return {
-      goToDetail,
+      displayedComics,
       onClickBox,
+      currentPage,
+      totalPages,
+      nextPage,
+      prevPage
     };
   }
-
 }
 </script>
 

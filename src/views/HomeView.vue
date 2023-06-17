@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div class="home">
     <h2>Comics</h2>
     <div class="flex">
