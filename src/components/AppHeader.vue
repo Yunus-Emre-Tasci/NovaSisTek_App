@@ -10,6 +10,7 @@
         <path
           d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
       </svg>
+      <LikedComics v-if="show" />
      </div>
      <div class="toggleTheme">
       <nav>
@@ -60,9 +61,10 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
+import LikedComicsVue from './LikedComics.vue';
 
 export default {
   name: 'AppHeader',
@@ -70,9 +72,18 @@ export default {
     darkMode: Boolean,
     toggleDarkMode: Function,
   },
+  components:{LikedComicsVue},
   setup() {
     const router = useRouter();
     const store = useStore();
+    const show = ref(false);
+
+    const onShow = () => {
+      if (basketsLength.value !== 0) {
+        // Do something
+      }
+      show.value = !show.value;
+    };
 
     // Scroll olayını dinle
     window.addEventListener("scroll", function() {
@@ -98,6 +109,8 @@ export default {
     return {
       basketsLength,
       goToHome,
+      show,
+      onShow,
     };
   },
 };
